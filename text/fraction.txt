@@ -1,0 +1,1 @@
+\lim _ { x \rightarrow 3 } ( \frac { x ^ { 2 } + 9 } { x - 3 } )h ( x ) = \frac { x ^ { 2 } - 2 x - 15 } { x + 3 }

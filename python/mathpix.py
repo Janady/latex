@@ -10,14 +10,14 @@ import json
 #
 # N.B.: Set your credentials in environment variables APP_ID and APP_KEY,
 # either once via setenv or on the command line as in
-# APP_ID=my-id APP_KEY=my-key python3 simple.py 
+# APP_ID=my-id APP_KEY=my-key python3 simple.py
 #
 
 env = os.environ
 
 default_headers = {
-    'app_id': env.get('APP_ID', 'trial'),
-    'app_key': env.get('APP_KEY', '34f1a4cea0eaca8540c95908b4dc84ab'),
+    'app_id': env.get('APP_ID', 'janady_163_com'),
+    'app_key': env.get('APP_KEY', '827581dea4d1374b9c35'),
     'Content-type': 'application/json'
 }
 

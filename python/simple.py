@@ -15,11 +15,26 @@ import json
 # the return format should be either text or latex_styled
 # (depending on whether you want to use the result as a paragraph or an equation).
 #
+import os
 
-r = mathpix.latex({
-    'src': mathpix.image_uri('../images/algebra.jpg'),
-    'formats': ['latex_simplified']
-})
+rootdir = '../test/'
+savedir = '../text/'
+list = os.listdir(rootdir)
+for filename in list:
+    portion = os.path.splitext(filename)
+    savename = portion[0]+'.txt'
+    path = os.path.join(rootdir, filename)
+    savepath = os.path.join(savedir, savename)
+    r = mathpix.latex({
+        'src': mathpix.image_uri(path),
+        'formats': ['latex_simplified']
+    })
 
-print(json.dumps(r, indent=4, sort_keys=True))
-assert(r['latex_simplified'] == '12 + 5 x - 8 = 12 x - 10')
+    f = open(savepath, 'a')
+    f.write(r['latex_simplified'])
+    f.close
+    print(savepath)
+
+#
+# print(json.dumps(r, indent=4, sort_keys=True))
+# assert(r['latex_simplified'] == '12 + 5 x - 8 = 12 x - 10')
