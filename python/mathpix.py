@@ -16,8 +16,8 @@ import json
 env = os.environ
 
 default_headers = {
-    'app_id': env.get('APP_ID', 'janady_163_com'),
-    'app_key': env.get('APP_KEY', '827581dea4d1374b9c35'),
+    'app_id': env.get('APP_ID', '***'),
+    'app_key': env.get('APP_KEY', '***'),
     'Content-type': 'application/json'
 }
 

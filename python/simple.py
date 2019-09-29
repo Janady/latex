@@ -16,25 +16,33 @@ import json
 # (depending on whether you want to use the result as a paragraph or an equation).
 #
 import os
+import sys
 
-rootdir = '../test/'
-savedir = '../text/'
-list = os.listdir(rootdir)
-for filename in list:
-    portion = os.path.splitext(filename)
-    savename = portion[0]+'.txt'
-    path = os.path.join(rootdir, filename)
-    savepath = os.path.join(savedir, savename)
-    r = mathpix.latex({
-        'src': mathpix.image_uri(path),
-        'formats': ['latex_simplified']
-    })
+def main(root):
+    savedir = '../out/'
+    list = os.listdir(root)
+    for filename in list:
+        path = os.path.join(rootdir, filename)
+        if not os.path.isfile(path):
+            break
+        portion = os.path.splitext(filename)
+        savename = portion[0]+'.txt'
+        savepath = os.path.join(savedir, savename)
+        r = mathpix.latex({
+            'src': mathpix.image_uri(path),
+            'formats': ['latex_simplified']
+        })
 
-    f = open(savepath, 'a')
-    f.write(r['latex_simplified'])
-    f.close
-    print(savepath)
+        with open(savepath, 'w+') as f:
+            f.write(r['latex_simplified'])
+        print(savepath)
 
+
+if __name__ == '__main__':
+    if len(sys.argv) >= 2:
+        rootdir = sys.argv[1]
+        if os.path.isdir(rootdir):
+            main(rootdir)
 #
 # print(json.dumps(r, indent=4, sort_keys=True))
 # assert(r['latex_simplified'] == '12 + 5 x - 8 = 12 x - 10')
